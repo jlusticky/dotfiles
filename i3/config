@@ -156,6 +156,7 @@ bar {
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
 exec --no-startup-id pasystray
+exec --no-startup-id xfce4-power-manager
 
 # volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -- '-10%'
@@ -168,3 +169,6 @@ bindsym XF86Favorites exec gsimplecal
 
 # lock, suspend, reboot
 bindsym $mod+l exec "i3lock --nofork -c 000000"
+
+# print screen
+bindsym Print exec "xfce4-screenshooter"
