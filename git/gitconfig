@@ -1,3 +1,5 @@
 [user]
 	name = Josef Lusticky
 	email = josef@lusticky.cz
+[alias]
+	co = checkout
