@@ -115,10 +115,12 @@ bindsym $mod+Shift+eacute move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
+
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-msg exit" # "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-msg exit" # "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -128,16 +130,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym uring resize grow width 10 px or 10 ppt
+        bindsym j resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym l resize shrink height 5 px or 5 ppt
+        bindsym uring resize grow width 5 px or 5 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -151,6 +153,9 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# numlock
+exec_always --no-startup-id numlockx on
 
 # autostart
 exec --no-startup-id nm-applet
@@ -169,6 +174,14 @@ bindsym XF86Favorites exec gsimplecal
 
 # lock, suspend, reboot
 bindsym $mod+l exec "i3lock --nofork -c 000000"
+exec --no-startup-id xautolock -time 10 -locker "i3lock -c 000000"
 
 # print screen
 bindsym Print exec "xfce4-screenshooter"
+
+# floating mode for selected apps - use xprop and click on the app window to see it
+for_window [class="qalculate"] floating enable
+for_window [class="gnome-calculator"] floating enable
+
+# file manager
+bindsym $mod+q exec xdg-open "$PWD"
