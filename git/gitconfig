@@ -3,3 +3,19 @@
 	email = josef@lusticky.cz
 [alias]
 	co = checkout
+	permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
+	pristine = !git reset --hard && git clean -dffx
+	list-foreign = ls-files --others --ignored --exclude-from=.gitignore
+	last = log -1 HEAD
+	st = status
+	br = branch
+[difftool "eaglediff"]
+	cmd = eaglediff $LOCAL $REMOTE
+[difftool]
+	prompt = false
+[diff]
+	tool = meld
+[merge]
+	tool = meld
+[push]
+	default = current
