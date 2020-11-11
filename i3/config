@@ -23,9 +23,6 @@ font pango:DejaVu Sans Mono 8
 # X core fonts rendering does not support right-to-left and this being a bitmap
 # font, it doesn’t scale on retina/hidpi displays.
 
-# Background
-exec --no-startup-id xsetroot -solid "#101010"
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -46,11 +43,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec "rofi -modi run,window -show run -sidebar-mode -color-window '#000000, #000000, #000000' -color-normal '#000000, #2e9ef4, #000000, #005577, #000000' -color-active '#000000, #005577, #000000, #005577, #000000' -color-urgent '#000000, #005577, #000000, #005577, #000000'
 
 # change focus
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
-#bindsym $mod+l focus up
-#bindsym $mod+uring focus right
-
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus right
+bindsym $mod+i focus up
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -58,11 +54,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-#bindsym $mod+Shift+j move left
-#bindsym $mod+Shift+k move down
-#bindsym $mod+Shift+l move up
-#bindsym $mod+Shift+uring move right
-
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+i move up
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -125,50 +120,46 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-msg exit" # "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+	# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym l resize shrink height 5 px or 5 ppt
-        bindsym uring resize grow width 5 px or 5 ppt
+	# Pressing left will shrink the window’s width.
+	# Pressing right will grow the window’s width.
+	# Pressing up will shrink the window’s height.
+	# Pressing down will grow the window’s height.
+	bindsym j resize shrink width 5 px or 5 ppt
+	bindsym k resize grow height 5 px or 5 ppt
+	bindsym l resize shrink height 5 px or 5 ppt
+	bindsym uring resize grow width 5 px or 5 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
+	# same bindings, but for the arrow keys
+	bindsym Left resize shrink width 5 px or 5 ppt
+	bindsym Down resize grow height 5 px or 5 ppt
+	bindsym Up resize shrink height 5 px or 5 ppt
+	bindsym Right resize grow width 5 px or 5 ppt
 
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        status_command i3status
+	status_command i3status
 }
 
-# numlock
-exec_always --no-startup-id numlockx on
-
 # autostart
+exec --no-startup-id numlockx on
+exec --no-startup-id xautolock -time 10 -locker "i3lock -c 000000"
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift-gtk
 exec --no-startup-id pasystray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id systray-mdstat
+exec --no-startup-id xsetroot -solid "#101010"
 
 # volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 '-10%'
@@ -178,10 +169,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 'toggle'
 # MS keyboard
 bindsym XF86HomePage exec chromium
 bindsym XF86Favorites exec gsimplecal
-
-# lock, suspend, reboot
-bindsym $mod+l exec "i3lock --nofork -c 000000"
-exec --no-startup-id xautolock -time 10 -locker "i3lock -c 000000"
 
 # print screen
 bindsym Print exec "xfce4-screenshooter"
@@ -209,4 +196,10 @@ mode "$mode_system" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Pause mode "$mode_system"
+bindsym $mod+Shift+x mode "$mode_system"
+
+# exit i3 (logs you out of your X session)
+#bindsym $mod+Shift+x exec "i3-msg exit" # "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# lock, suspend, reboot
+#bindsym $mod+l exec "i3lock --nofork -c 000000"
