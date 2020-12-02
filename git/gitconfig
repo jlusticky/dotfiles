@@ -9,6 +9,8 @@
 	last = log -1 HEAD
 	st = status
 	br = branch
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [difftool "eaglediff"]
 	cmd = eaglediff $LOCAL $REMOTE
 [difftool]
