@@ -11,6 +11,12 @@
 	br = branch
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser =
+	smtpPass =
+	smtpServerPort = 587
 [difftool "eaglediff"]
 	cmd = eaglediff $LOCAL $REMOTE
 [difftool]
