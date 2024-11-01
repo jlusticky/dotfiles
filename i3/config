@@ -155,11 +155,13 @@ bar {
 exec --no-startup-id numlockx on
 #exec --no-startup-id xautolock -time 10 -locker "i3lock -c 000000"
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 exec --no-startup-id redshift-gtk
 exec --no-startup-id pasystray
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id systray-mdstat
 exec --no-startup-id xsetroot -solid "#101010"
+#exec --no-startup-id feh --bg-scale /usr/share/wallpapers/DebianTheme/contents/images/3840x2160.svg
 
 # volume control
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 '-10%'
