@@ -5,7 +5,7 @@
 	co = checkout
 	permission-reset = !git diff -p -R --no-color | grep -E \"^(diff|(old|new) mode)\" --color=never | git apply
 	pristine = !git reset --hard && git clean -dffx
-	list-foreign = ls-files --others --ignored --exclude-from=.gitignore
+	list-foreign = "!if [ -f .gitignore ]; then git ls-files --others --ignored --exclude-from=.gitignore; else git ls-files --others; fi"
 	last = log -1 HEAD
 	st = status
 	br = branch
@@ -27,3 +27,7 @@
 	tool = meld
 [push]
 	default = current
+[format]
+	signoff = true
+[pull]
+	ff = only
